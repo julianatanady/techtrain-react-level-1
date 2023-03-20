@@ -1,37 +1,36 @@
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
 function NewThreads(){
-    const [newThread, setNewThread] = useState([]);
+    const [newThread, setNewThread] = useState({
+        id: '',
+        title: ''
+    });
 
-    const postThread = async (url, data) => {
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }, 
-                body: JSON.stringify(data)
-            });
-            if(!response.ok){
-                throw new Error(`HTTP error ${response.status}`);
-            }
+    const handleInputChange = (event) => {
+        setNewThread({...newThread,[event.target.name]: event.target.value});
+    };
+    
+    const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    fetch('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newThread)
+        })
+        .catch(error => console.error(error));
+    };
 
-            return await response.json();
-        } catch(error){
-            console.log('Error:', error);
-        }
-
-    }
-    const addThread = async (event) => {
-        event.preventDefault();
-        const url = "https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads"
-        setNewThread(event.target.value)
-
-        const result = await postThread(url, newThread);
-        console.log(result);
-    }
+    // TODO: ask about the axious and fetch api differences
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     axios.post('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads', newThread)
+    // }
 
     return(
         <div>
@@ -41,10 +40,10 @@ function NewThreads(){
                 <h1>スレッド新規作成</h1>
             </header>
             <main>
-                <form onSubmit={addThread}>
-                    <input type="text" placeholder='スレッドタイトル' name="title"></input>
+                <form>
+                    <input name="title" type="text" placeholder='スレッドタイトル' value={newThread.title} onChange={handleInputChange}></input>
                     <Link to="/">Topに戻る</Link>
-                    <button type='submit'>作成</button>
+                    <button onClick={handleSubmit}>作成</button>
                 </form>
             </main>
         </div>
