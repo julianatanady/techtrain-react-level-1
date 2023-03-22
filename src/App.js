@@ -7,8 +7,12 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar/>
+      <header>
+        <NavBar/>
+      </header>
+      <section>
         <Threads className="threads"/>
+      </section>
     </div>
   );
 }

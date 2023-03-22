@@ -26,7 +26,6 @@ function NewThreads(){
         .catch(error => console.error(error));
     };
 
-    // TODO: ask about the axious and fetch api differences
     // const handleSubmit = (event) => {
     //     event.preventDefault();
     //     axios.post('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads', newThread)
@@ -42,7 +41,7 @@ function NewThreads(){
             <main>
                 <form>
                     <input name="title" type="text" placeholder='スレッドタイトル' value={newThread.title} onChange={handleInputChange}></input>
-                    <Link to="/">Topに戻る</Link>
+                    <Link className="back-to-top-link" to="/">Topに戻る</Link>
                     <button onClick={handleSubmit}>作成</button>
                 </form>
             </main>

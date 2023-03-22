@@ -43,6 +43,12 @@
   font-size: 30px;
   background-color:white;
   border: 1px solid black;
+  text-decoration: none;
+}
+
+.thread-link{
+  text-decoration: none;
+  color: black;
 }
 
 .threads-button{
@@ -58,6 +64,7 @@
   border-radius: 5px;
   color: white;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .new-threads{
@@ -81,12 +88,6 @@
   font-size: 20px;
 }
 
-.new-threads form a{
-  margin-top: 30px;
-  font-size: 20px;
-  color: blue;
-}
-
 .new-threads form button{
   margin-top: 15px;
   padding-left: 50px;
@@ -95,5 +96,71 @@
   border: 1px;
   border-radius: 5px;
   color: white;
+  font-size: 25px;
+}
+
+.back-to-top-link {
+  text-decoration: none;
+  margin-top: 30px;
+  font-size: 25px;
+  color: blue
+}
+
+.posts{
+  display: flex;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  width: 80%;
+  height: auto;
+  justify-content: space-between;
+}
+
+.post-title{
+  margin-left: 100px;
+}
+
+.posts .posts-container{
+  width: 50%;
+}
+
+.posts .posts-list .post{
+  list-style: none;
+  padding: 10px 10px;
+  margin: 20px 10px;
+  font-size: 30px;
+  background-color:white;
+  text-decoration: none;
+}
+
+.posts .post-form form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.posts .post-form form textarea{
+  width: 100%;
+  height: 200px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
   font-size: 20px;
+}
+
+.posts .post-form form button{
+  margin-top: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+  background-color: rgb(137, 212, 148);
+  border: 1px;
+  border-radius: 5px;
+  color: white;
+  font-size: 25px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.post-footer{
+  margin-left: 100px;
 }

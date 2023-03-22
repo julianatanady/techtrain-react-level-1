@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import NewThreads from './pages/NewThreads';
+import Posts from './pages/Posts';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "new",
     element: <NewThreads/>
+  },
+  {
+    path: "/:threadId/:threadTitle/posts",
+    element: <Posts />
   }
 ]);
 
