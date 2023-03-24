@@ -4,11 +4,16 @@ import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
 function Posts (){
-    const {threadId, threadTitle} = useParams();
+    const {thread_id} = useParams();
     const [posts, setPosts] = useState([]);
-    
+    const [newPost, setNewPost] = useState({
+        id: '',
+        thread_id: thread_id,
+        post: ''
+    });
+
     const fetchPosts = async () => {
-        const response = await fetch(`https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${threadId}/posts`)
+        const response = await fetch(`https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${thread_id}/posts`)
         const jsonResponse = await response.json()
         setPosts(jsonResponse.posts)};
 
@@ -16,12 +21,6 @@ function Posts (){
         fetchPosts();
     }, []);
     
-    const [newPost, setNewPost] = useState({
-        id: '',
-        threadId: threadId,
-        post: ''
-    });
-
     const handleInputChange = (event) => {
         setNewPost({...newPost,[event.target.name]: event.target.value});
     };
@@ -29,21 +28,26 @@ function Posts (){
     const handleSubmit = (event) => {
     event.preventDefault();
     
-    fetch(`https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${threadId}/posts`, {
+    fetch(`https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads/${thread_id}/posts`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(newPost)
         })
-        .then(setPosts(prev => [newPost, ...prev]))
-        .catch(error => console.error(error));
+        .then(response => {
+            if (response.ok) {
+                fetchPosts();
+            } else {
+                throw new Error('エラーです');
+            }
+        })
     };
 
     return(
         <div>
         <NavBar/>
-        <h1 className='post-title'>{threadTitle}</h1>
+        <h1 className='post-title'></h1>
         <section className='posts'>
             <div className='posts-container'>
                     <ul className="posts-list">

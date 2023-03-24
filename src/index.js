@@ -13,11 +13,11 @@ const router = createBrowserRouter([
     element: <App/>,
   },
   {
-    path: "new",
+    path: "thread/new",
     element: <NewThreads/>
   },
   {
-    path: "/:threadId/:threadTitle/posts",
+    path: "thread/:thread_id",
     element: <Posts />
   }
 ]);
