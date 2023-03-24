@@ -6,7 +6,7 @@ function NavBar(){
         <nav className='navbar'>
             <div className='navbar-title'>掲示板</div>
             <ul className='navbar-menu'>
-                <li><Link to="/new">スレッドをたてる</Link></li>
+                <li><Link to="/thread/new">スレッドをたてる</Link></li>
             </ul>
         </nav>
     )

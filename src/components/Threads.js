@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 // import axios from 'axios'
 
 function Threads(){
@@ -46,7 +47,7 @@ function Threads(){
             </header>
             <main>
                 <ul className='threads-list'>
-                    {threads.map(thread => <li className='thread' key={thread.id}><Link className="thread-link" to={`/${thread.id}/${thread.title}/posts`}>{thread.title}</Link></li>)}
+                    {threads.map(thread => <li className='thread' key={thread.id}><Link className="thread-link" to={`/thread/${thread.id}`}>{thread.title}</Link></li>)}
                 </ul>
                 <div className='threads-button'>
                     {currentThreads >= num && <button onClick={handlePrevThreads} className="button">前のスレッド</button>}
@@ -58,5 +59,4 @@ function Threads(){
 }
 
 export default Threads;
-{/* <div className='thread' key={thread.id}>{thread.title}</div> */}
 
