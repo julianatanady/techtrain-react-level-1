@@ -38,6 +38,7 @@ function Posts (){
         .then(response => {
             if (response.ok) {
                 fetchPosts();
+                setNewPost({post: ''})
             } else {
                 throw new Error('エラーです');
             }
@@ -55,9 +56,9 @@ function Posts (){
                     </ul>
             </div>
             <div className='post-form'>
-                <form>
-                    <textarea name="post" type="text" placeholder='投稿しよう！' value={newPost.post} onChange={handleInputChange}/>
-                    <button onClick={handleSubmit}>投稿</button>
+                <form onSubmit={handleSubmit}>
+                    <textarea name="post" type="text" placeholder='投稿しよう！' value={newPost.post} onChange={handleInputChange} required/>
+                    <button type="submit">投稿</button>
                 </form>
             </div>
         </section>
